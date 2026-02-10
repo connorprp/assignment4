@@ -2,16 +2,22 @@
 
 import { defineModel, ref } from 'vue'
 
+//define all models for fields
 const title = defineModel('title')
 const author = defineModel('author')
 const type = defineModel('type', { default: () => [] })
 const date_published = defineModel('date_published')
 const description = defineModel('description')
 
+//define emit to pass to parent when button is clicked
 const emit = defineEmits(['isValid'])
 
+//reactive array defining fields that are not filled
 const invalidFields = ref([])
 
+//runs when button is clicked, checks if each v-model exists
+//defining a model creates a reactive variable
+//pushes value to array if not filled
 function validate() {
     invalidFields.value = []
 
@@ -21,6 +27,7 @@ function validate() {
     if (!date_published.value) invalidFields.value.push('date_published')
     if (!description.value) invalidFields.value.push('description')
 
+    //if no errors, emit valid === true, else false
     if (invalidFields.value.length === 0) {
         emit('isValid', true)
     } else {
@@ -37,6 +44,7 @@ function validate() {
             <div class="field">
                 <label for="title">Title</label>
                 <input id="title" v-model="title">
+                <!-- if the array includes 'title', show the <p> -->
                 <p v-if="invalidFields.includes('title')" class="error">Required</p>
             </div>
 
@@ -173,6 +181,6 @@ button:hover {
 }
 
 button:active {
-    transform: translateY(1px);
+    transform: translateY(2px);
 }
 </style>

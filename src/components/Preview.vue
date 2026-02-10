@@ -10,6 +10,7 @@ defineProps({
         <div class="preview-header">
             <h3>Preview</h3>
             <div class="status">
+                <!-- recieves prop and reads value in the v-if / else and decides which to show -->
                 <span v-if="isValid" class="valid">✓ Valid</span>
                 <span v-else class="invalid">✕ Incomplete</span>
             </div>
@@ -18,6 +19,7 @@ defineProps({
         <div class="preview-content">
             <div class="row">
                 <label>Title</label>
+                <!-- recieves v-model data -->
                 <span>{{ preview.title }}</span>
             </div>
 
@@ -46,6 +48,7 @@ defineProps({
 
 <style scoped>
 .preview-card {
+    /* fixed size box*/
     width: 100%;
     max-width: 600px;
     height: 680px;
@@ -56,7 +59,7 @@ defineProps({
     box-shadow: 0 6px 24px rgba(0, 0, 0, 0.06);
     font-family: "Segoe UI";
     color: #1f2933;
-    overflow-y: auto;
+    overflow-y: auto; /* limits scrolling to inside the box */
 }
 
 .preview-header {
@@ -120,9 +123,5 @@ span {
     font-size: 15px;
     line-height: 1.5;
     color: #243b53;
-}
-
-.description span {
-    white-space: pre-wrap;
 }
 </style>
